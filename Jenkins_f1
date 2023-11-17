@@ -1,0 +1,19 @@
+pipeline {
+agent any
+environment{
+PATH="/opt/maven/bin:$PATH"
+}
+
+  stages{
+      stage("code clone"){
+        steps{
+        git credentialsId: '097e7674-4d58-4cf6-90eb-0ccf014139aa', url: 'https://github.com/mrkhan9989/Sp_10p.git'
+        }
+      }
+      stage("maven goals"){
+          steps{
+           sh 'mvn clean package'
+          }
+      }
+  }
+}
